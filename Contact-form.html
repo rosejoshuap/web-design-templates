@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Unica+One" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css?family=Cantarell:400,700" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--Social Media Icons--> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #262626;
+    border-radius: 4px;
+    box-shadow: border-box;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #b62425;
+    color: #e9e9e9;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    margin-top: 16px;
+    font-size: 1.25em;
+    font-family: "Unica One", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .125em;
+}
+
+input[type=submit]:hover {
+    background-color: #7f7f7f;
+}
+
+.form {
+    border-radius: 5px;
+    background-color: #1c1c1c;
+    padding: 24px;
+}  
+
+    </style>
+  </head>
+  
+  <body>
+  
+    <div class="form">
+          <h4>CONTACT / HIRE</h4>
+          <!--<form action="/action_page.php"> Use when PHP server in use-->
+          <form method="post" action="mailto:email@address.com" enctype="text/plain">
+            <input type="text" id="name" name="firstname" placeholder="Your name...">
+            <input type="text" id="company" name="company" placeholder="Company or Organization...">
+            <input type="text" id="subject" name="subject" placeholder="Subject...">
+            <textarea id="message" name="message" placeholder="Your message..."></textarea>
+            <input type="submit" value="Submit">
+          </form>
+        </div>  
+
+  </body>
+</html>

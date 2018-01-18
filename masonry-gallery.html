@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Masonry Gallery</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/*Image Gallery*/
+.masonry {
+    column-count: 3;
+    column-gap: 1em;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 1em;
+}
+
+.item {
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .masonry {
+        column-count: 2;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .masonry {
+        column-count: 1;
+        -wekit-column-count: 1;
+        -moz-column-count: 1;
+    }
+}
+
+/*Lightbox*/
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(overlay.png) repeat;
+    text-align: center;
+    z-index: 1;
+}
+
+#lightbox p {
+    text-align: right;
+    color: #e9e9e9;
+    margin-right: 20px;
+    font-size: 12px;
+}
+
+#lightbox img {
+    box-shadow: 0 0 25px #111;
+    -webkit-box-shadow: 0 0 25px #111;
+    -moz-box-shadow: 0 0 25px #111;
+    max-width: 850px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="masonry">
+	<div class="item"><a href="http://people.csail.mit.edu/billf/project%20pages/sresCode/Markov%20Random%20Fields%20for%20Super-Resolution_files/100075_lowres.jpg" class="lightbox_trigger"><img src="http://people.csail.mit.edu/billf/project%20pages/sresCode/Markov%20Random%20Fields%20for%20Super-Resolution_files/100075_lowres.jpg"/></a></div>
+	<div class="item"><a href="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hans_David_Rearick%2C_color%2C_low-res.JPG" class="lightbox_trigger"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Hans_David_Rearick%2C_color%2C_low-res.JPG"/></a></div>
+	<div class="item"><a href="http://mystar1053.com/wp-content/uploads/2013/02/HarveyGreySuitPortrait-col-low-res.jpg" class="lightbox_trigger"><img src="http://mystar1053.com/wp-content/uploads/2013/02/HarveyGreySuitPortrait-col-low-res.jpg"/></a></div>
+	<div class="item"><a href="http://www.amd.com/PublishingImages/photography/executive/low-res/lisa-su-formal-low-res.jpg" class="lightbox_trigger"><img src="http://www.amd.com/PublishingImages/photography/executive/low-res/lisa-su-formal-low-res.jpg"/></a></div>
+	<div class="item"><a href="https://nunuaj.files.wordpress.com/2015/10/resolution.jpg" class="lightbox_trigger"><img src="https://nunuaj.files.wordpress.com/2015/10/resolution.jpg"/></a></div>
+	<div class="item"><a href="https://img.purch.com/o/aHR0cDovL3d3dy5sYXB0b3BtYWcuY29tL2ltYWdlcy93cC9wdXJjaC1hcGkvaW5jb250ZW50LzIwMTcvMTIvZmFjZS1yZWNvZzItc2hzdC01OTh4NDAwLmpwZw==" class="lightbox_trigger"><img src="https://img.purch.com/o/aHR0cDovL3d3dy5sYXB0b3BtYWcuY29tL2ltYWdlcy93cC9wdXJjaC1hcGkvaW5jb250ZW50LzIwMTcvMTIvZmFjZS1yZWNvZzItc2hzdC01OTh4NDAwLmpwZw=="/></a></div> 
+	<div class="item"><a href="http://www.prime-junta.net/pont/img/How_to/ha_Testing_lenses/high_acc_low_res.jpg" class="lightbox_trigger"><img src="http://www.prime-junta.net/pont/img/How_to/ha_Testing_lenses/high_acc_low_res.jpg"/></a></div>  
+	<div class="item"><a href="https://www.achahome.com/_images/res-low-high-face.jpg" class="lightbox_trigger"><img src="https://www.achahome.com/_images/res-low-high-face.jpg"/></a></div>  
+</div>
+
+<!--<div id="lightbox">
+        <p>Click to close</p>
+        <div id="lb-content">
+          <img src="#"/>
+        </div>
+      </div> -->   
+    
+    <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
+    
+    <script>
+jQuery(document).ready(function($) {
+	
+	$('.lightbox_trigger').click(function(e) {
+		
+		//prevent default action (hyperlink)
+		e.preventDefault();
+		
+		//Get clicked link href
+		var image_href = $(this).attr("href");
+		
+		/* 	
+		If the lightbox window HTML already exists in document, 
+		change the img src to to match the href of whatever link was clicked
+		
+		If the lightbox window HTML doesn't exists, create it and insert it.
+		(This will only happen the first time around)
+		*/
+		
+		if ($('#lightbox').length > 0) { // #lightbox exists
+			
+			//place href as img src value
+			$('#content').html('<img src="' + image_href + '" />');
+		   	
+			//show lightbox window - you could use .show('fast') for a transition
+			$('#lightbox').show();
+		}
+		
+		else { //#lightbox does not exist - create and insert (runs 1st time only)
+			
+			//create HTML markup for lightbox window
+			var lightbox = 
+			'<div id="lightbox">' +
+				'<p>Click to close</p>' +
+				'<div id="content">' + //insert clicked link's href into img src
+					'<img src="' + image_href +'" />' +
+				'</div>' +	
+			'</div>';
+				
+			//insert lightbox HTML into page
+			$('body').append(lightbox);
+		}
+		
+	});
+	
+	//Click anywhere on the page to get rid of lightbox window
+	$('#lightbox').live('click', function() { //must use live, as the lightbox element is inserted into the DOM
+		$('#lightbox').hide();
+	});
+
+});
+</script> 
+
+</body>
+</html>
